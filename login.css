@@ -1,0 +1,17 @@
+.img-box{
+	background-image: url("http://www.forest.go.kr/newkfsweb/cmm/fms/FileDown.do?atchFileId=FILE_000000010008639&fileSn=0");	
+	color: white;
+	font-family: 'Do Hyeon';
+	background-size: cover;
+	text-align: center;
+	width: 400px;
+	height: 300px;
+	border-radius: 10px;
+	padding: 20px;
+}
+.outer{
+	width: 600px;
+}
+.img-box, .outer{
+	margin: auto;
+}

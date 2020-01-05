@@ -1,0 +1,22 @@
+.cards{
+	display: flex;
+	font-family: 'Yeon Sung', cursive;
+}
+
+.card{
+	margin: 10px;
+}
+
+.jumbotron{
+	font-family: 'Yeon Sung', cursive;
+}
+
+.box{
+	position: center;
+	width: 400px;
+	height: 250px;
+	border: 2px solid;
+	padding-top: 20px;
+	margin: auto;
+	font-family: 'Yeon Sung', cursive;
+}
