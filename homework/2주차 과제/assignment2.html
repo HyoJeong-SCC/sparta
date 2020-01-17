@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<title>꽃차 4종세트</title>
+
+	<!-- <applying style> -->
+	<link rel = "stylesheet" type = "text/css" href = "assignment2.css">
+
+	<!-- <Google font> -->
+	<link href="https://fonts.googleapis.com/css?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+	<!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+		
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  
+  <!-- <JS> -->
+    <script type="text/javascript">
+      function nbr_check(str){
+        var regNbr = /^(01[016789]{1}|070|02|0[3-9]{1}[0-9]{1})-[0-9]{3,4}-[0-9]{4}$/;
+        if(!regNbr.test(str)){
+          alert('올바른 전화번호를 입력해주세요.');
+          return false;
+        } return true;
+      }
+
+      /*위 Function은 구글링해서 찾은 코드 참고해서 쓴 부분입니다.*/
+
+
+      function order() {
+        let name = $('#order_name').val();
+        let howmany = $('#order_howmany').val();
+        let address = $('#order_address').val();
+        let phonenbr = $('#order_phonenbr').val();
+
+        if (name == ''){
+          alert('이름을 입력해주세요')
+          $('#order_name').focus()
+          return 
+        } else if (howmany == ''){
+          alert('수량을 선택해주세요')
+          $('#order_howmany').focus()
+          return
+        } else if (address == ''){
+          alert('주소를 입력해주세요')
+          $('#order_address').focus()
+          return
+        } else if (phonenbr == ''){
+          alert('전화번호를 입력해주세요')
+          $('#order_phonenbr').focus()
+          return 
+        } else if (!nbr_check(phonenbr)){
+          alert('전화번호 형식이 잘못되었습니다 010-0000-0000으로 입력해주세요')
+          return
+        }
+
+        $.ajax({
+          type: "POST" ,
+          url: "/order" ,
+          data: { name_give:name, howmany_give:howmany, address_give:address,phonenbr_give:phonenbr },
+          success: function(response){
+            if(response['result'] == 'success') {
+              alert('주문이 완료되었습니다');
+              console.log(response);
+              window.location.reload();
+            }
+          }
+        })
+      }
+
+    </script>
+
+
+</head>
+<body>
+	<div class="product">
+		<!-- product img top -->
+		<img class="product-img" src="http://photo.akmall.com/image0/goods/79/69/07/80/79690780_M_500.jpg" alt="product img cap">
+
+		<!-- <title and description> -->
+		<div class="product-body">
+			<h2>[설선물추천] 꽃차 4종세트 팝니다</h2><h4>가격: 57,500원</h4>
+			<p> 직접 만든 꽃차 4가지 종류를 엄선하여 정성스럽게 담았습니다. 다양한 향기를 맡으며 꽃차를 즐겨보세요. 꽃차 4종세트는 선물용으로도 인기가 많은 상품입니다.</p> 
+			<p>(대나무집게와 차 거름망도 함께 담아드려요.)</p>
+			<p> 구성: 메리골드 1EA, 구절초 1EA, 금계숙 1EA, 쑥꽃차 1EA
+		</div>
+
+		<!-- <order> -->
+		<div class="input-group mb-3">
+  			<div class="input-group-prepend">
+    			<span class="input-group-text" id="inputGroup-sizing-default">주문자 이름</span>
+  				<input type="text" class="form-control" id="order_name" style="width:405px"aria-label="Name" aria-describedby="inputGroup-sizing-default"> 
+  			</div>
+  		</div>
+
+		<div class="input-group mb-3">
+  			<div class="input-group-prepend">
+    			<label class="input-group-text" for="inputGroupSelect01">수량</label>
+  			</div>
+  			
+  			<select class="custom-select" id="order_howmany">
+    			<option selected>-- 수량을 선택하세요 --</option>
+    			<option value="1">1</option>
+    			<option value="2">2</option>
+    			<option value="3">3</option>
+				  <option value="4">4</option>
+    			<option value="5">5</option>
+    			<option value="6">6</option>
+    			<option value="7">7</option>
+    			<option value="8">8</option>
+    			<option value="9">9</option>
+    			<option value="10">10</option>
+  			</select>
+		</div>
+
+		<div class="input-group mb-3">
+  			<div class="input-group-prepend">
+    			<span class="input-group-text" id="inputGroup-sizing-default">주소</span>
+  				<input type="text" class="form-control" id="order_address" style="width:450px" aria-label="Address" aria-describedby="inputGroup-sizing-default"> 
+  		</div></div>
+
+
+  		<div class="input-group mb-3">
+  			<div class="input-group-prepend">
+    			<span class="input-group-text" id="inputGroup-sizing-default">전화번호</span>
+  				<input type="text" class="form-control" id="order_phonenbr" style="width:425px" aria-label="phonenumber" aria-describedby="inputGroup-sizing-default"> 
+  		</div>
+
+	</div>
+    
+      <div class="order">
+        <button onclick="order()" type="button" class="btn btn-primary"> 주문하기 </button>
+      </div>
+
+</body>
+</html>
