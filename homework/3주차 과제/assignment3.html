@@ -35,6 +35,45 @@
         return true;
       }
 
+      $.ajax({
+          type: 'GET',
+          url: 'http://spartacodingclub.shop/order',
+          data: {},
+          success: function(response){
+            console.log('성공!');
+            console.log(response);
+
+            let order = response.orders;
+            console.log(order);
+
+            // let order_name = []; 
+            // let order_count = [];
+            // let order_address = [];
+            // let order_phone = [];
+
+            let html = '';
+
+            for (let i=0; i<order.length-1; i++){
+              // order_name.push(order[i]['name']);
+              // order_count.push(order[i]['count']);
+              // order_address.push(order[i]['address']);
+              // order_phone.push(order[i]['phone']);
+
+              html += '<tr> <td>'+order[i]['name']+'</td> : <td> '+order[i]['count']+'</td> : <td> '+order[i]['address']+'</td> : <td> '+order[i]['phone']+'</td></tr>';
+
+            }
+
+            console.log(html);
+            $('#order_chart').html(html); 
+
+          },
+
+          error: function(response){
+            console.log('실패했어!');
+          }
+
+        });
+
 
       function order() {
         let name = $('#order_name').val();
@@ -63,48 +102,7 @@
           return
         }
 
-        $.ajax({
-          type: 'GET',
-          url: 'http://spartacodingclub.shop/order',
-          data: {},
-          success: function(response){
-            console.log('성공!');
-            console.log(response);
 
-            let order = response.orders.orders ;
-
-            let order_name = []; 
-            let order_count = [];
-            let order_address = [];
-            let order_phone = [];
-
-            let html = '';
-
-            for (let i=0; i<order-1; i++){
-              order_name.push(order[i]['name']);
-              order_count.push(order[i]['count']);
-              order_address.push(order[i]['address']);
-              order_phone.push(order[i]['phone']);
-
-              html += '<tr> <td>'+order[i]['name']+'</td> : <td> '+order[i]['count']+'</td> : <td> '+order[i]['address']+'</td> : <td> '+order[i]['phone']+'</td></tr>';
-
-            }
-
-            console.log(html);
-            $('#order_chart').html(html); 
-
-            console.log(order_name);
-            console.log(order_count);
-            console.log(order_address);
-            console.log(order_phone);
-
-          },
-
-          error: function(response){
-            console.log('실패했어!');
-          }
-
-        });
       }
 
     </script>
